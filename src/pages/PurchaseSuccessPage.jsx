@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useCartStore } from "../store/useCartStore";
 import axios from "../lib/axios";
 import Confetti from "react-confetti";
-import toast from "react-hot-toast";
 
 const PurchaseSuccessPage = () => {
 	const [isProcessing, setIsProcessing] = useState(true);
