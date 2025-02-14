@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useCartStore } from "../store/useCartStore";
 import axios from "../lib/axios";
 import Confetti from "react-confetti";
+import toast from "react-hot-toast";
 
 const PurchaseSuccessPage = () => {
 	const [isProcessing, setIsProcessing] = useState(true);
@@ -13,12 +14,10 @@ const PurchaseSuccessPage = () => {
 	useEffect(() => {
 		const handleCheckoutSuccess = async (sessionId) => {
 			try {
-				await axios.post("/checkout-success", {
-					sessionId,
-				});
+				await axios.post("/checkout-success", {sessionId});
 				clearCart();
 			} catch (error) {
-				console.log(error);
+				return resizeBy.json(error);
 			} finally {
 				setIsProcessing(false);
 			}
